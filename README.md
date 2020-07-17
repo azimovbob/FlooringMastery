@@ -1,1 +1,3 @@
-# FlooringMasteryFor
+# FlooringMastery
+
+Skeleton of the project
