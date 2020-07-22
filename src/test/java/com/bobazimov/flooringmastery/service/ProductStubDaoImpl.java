@@ -5,8 +5,11 @@
  */
 package com.bobazimov.flooringmastery.service;
 
+import com.bobazimov.flooringmastery.dao.OrderPersistenceException;
 import com.bobazimov.flooringmastery.dao.ProductDao;
 import com.bobazimov.flooringmastery.model.Product;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,32 +25,53 @@ public class ProductStubDaoImpl implements ProductDao{
     }
 
     public ProductStubDaoImpl() {
-        
+        onlyProduct = new Product();
+        onlyProduct.setCostPerSqFt(new BigDecimal("5.15"));
+        onlyProduct.setProductType("Wood");
+        onlyProduct.setLaborCostPerSqft(new BigDecimal("4.75"));
     }
     
     @Override
-    public List<Product> getProducts() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Product> getProducts() throws OrderPersistenceException{
+        List<Product> productList = new ArrayList<>();
+        productList.add(onlyProduct);
+        return productList;
     }
 
     @Override
-    public Product getProduct(String productType) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Product getProduct(String productType) throws OrderPersistenceException{
+        if(productType.equals(onlyProduct.getProductType())){
+            return onlyProduct;
+        }else{
+            return null;
+        }
     }
 
     @Override
-    public void createProduct(Product product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Product createProduct(Product product) {
+        if(onlyProduct.getProductType().equals(product.getProductType())){
+            return onlyProduct;
+        }else{
+            return null;
+        }
     }
 
     @Override
-    public void deleteProduct(Product product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Product deleteProduct(Product product) {
+        if(onlyProduct.getProductType().equals(product.getProductType())){
+            return onlyProduct;
+        }else{
+            return null;
+        }
     }
 
     @Override
-    public void updateProduct(Product product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Product updateProduct(Product product) {
+           if(onlyProduct.getProductType().equals(product.getProductType())){
+            return onlyProduct;
+        }else{
+            return null;
+        }
     }
     
 }

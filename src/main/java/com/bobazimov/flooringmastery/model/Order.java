@@ -23,6 +23,15 @@ public class Order {
     private BigDecimal totalLaborCost;
     private BigDecimal totalProductCost;
     private BigDecimal totalTax;
+    private BigDecimal total;
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
     private LocalDate date;
 
     public Order() {
@@ -103,15 +112,16 @@ public class Order {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + this.orderNumber;
-        hash = 79 * hash + Objects.hashCode(this.customerName);
-        hash = 79 * hash + Objects.hashCode(this.state);
-        hash = 79 * hash + Objects.hashCode(this.product);
-        hash = 79 * hash + Objects.hashCode(this.area);
-        hash = 79 * hash + Objects.hashCode(this.totalLaborCost);
-        hash = 79 * hash + Objects.hashCode(this.totalProductCost);
-        hash = 79 * hash + Objects.hashCode(this.totalTax);
-        hash = 79 * hash + Objects.hashCode(this.date);
+        hash = 97 * hash + this.orderNumber;
+        hash = 97 * hash + Objects.hashCode(this.customerName);
+        hash = 97 * hash + Objects.hashCode(this.state);
+        hash = 97 * hash + Objects.hashCode(this.product);
+        hash = 97 * hash + Objects.hashCode(this.area);
+        hash = 97 * hash + Objects.hashCode(this.totalLaborCost);
+        hash = 97 * hash + Objects.hashCode(this.totalProductCost);
+        hash = 97 * hash + Objects.hashCode(this.totalTax);
+        hash = 97 * hash + Objects.hashCode(this.total);
+        hash = 97 * hash + Objects.hashCode(this.date);
         return hash;
     }
 
@@ -151,6 +161,9 @@ public class Order {
         if (!Objects.equals(this.totalTax, other.totalTax)) {
             return false;
         }
+        if (!Objects.equals(this.total, other.total)) {
+            return false;
+        }
         if (!Objects.equals(this.date, other.date)) {
             return false;
         }
@@ -159,7 +172,9 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" + "orderNumber=" + orderNumber + ", customerName=" + customerName + ", state=" + state + ", product=" + product + ", area=" + area + ", totalLaborCost=" + totalLaborCost + ", totalProductCost=" + totalProductCost + ", totalTax=" + totalTax + ", date=" + date + '}';
+        return "Order{" + "orderNumber=" + orderNumber + ", customerName=" + customerName + ", state=" + state + ", product=" + product + ", area=" + area + ", totalLaborCost=" + totalLaborCost + ", totalProductCost=" + totalProductCost + ", totalTax=" + totalTax + ", total=" + total + ", date=" + date + '}';
     }
+
+
     
 }

@@ -6,9 +6,17 @@
 package com.bobazimov.flooringmastery.service;
 
 import com.bobazimov.flooringmastery.dao.OrderDao;
+import com.bobazimov.flooringmastery.dao.OrderPersistenceException;
 import com.bobazimov.flooringmastery.model.Order;
+import com.bobazimov.flooringmastery.model.Product;
+import com.bobazimov.flooringmastery.model.State;
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -19,6 +27,36 @@ public class OrderStubDaoImpl implements OrderDao{
     public Order onlyOrder;
 
     public OrderStubDaoImpl() {
+        String date = "06012013";
+        LocalDate ld = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMddyyyy"));
+        int orderNumber = 2;
+
+        onlyOrder = new Order();
+        onlyOrder.setOrderNumber(2);
+        onlyOrder.setCustomerName("Doctor Who");
+        State state = new State();
+        state.setStateAbbrivation("WA");
+        BigDecimal taxRate = new BigDecimal("9.25");
+        state.setTaxRate(taxRate);
+        Product product = new Product();
+        product.setProductType("Wood");
+        BigDecimal area = new BigDecimal("243.00");
+        onlyOrder.setArea(area);
+        BigDecimal costPerSqFt = new BigDecimal("5.15");
+        BigDecimal laborCostPerSqFt = new BigDecimal("4.75");
+        product.setCostPerSqFt(costPerSqFt);
+        product.setLaborCostPerSqft(laborCostPerSqFt);
+        onlyOrder.setProduct(product);
+        onlyOrder.setState(state);
+        BigDecimal materialCost = new BigDecimal("1251.45");
+        BigDecimal laborCost = new BigDecimal("1154.25");
+        BigDecimal tax = new BigDecimal("222.52");
+        BigDecimal total = new BigDecimal("2628.22");
+        onlyOrder.setTotalProductCost(materialCost);
+        onlyOrder.setTotalLaborCost(laborCost);
+        onlyOrder.setTotalTax(tax);
+        onlyOrder.setTotal(total);
+        onlyOrder.setDate(ld);
     }
 
     public OrderStubDaoImpl(Order onlyOrder) {
@@ -26,33 +64,64 @@ public class OrderStubDaoImpl implements OrderDao{
     }
     
     @Override
-    public HashMap<Integer, Order> getOrders(LocalDate date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Order> getOrders(LocalDate date) {
+        List<Order> orderList = new ArrayList<>();
+        orderList.add(onlyOrder);
+        return orderList; 
     }
 
     @Override
     public Order addOrder(Order order) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(onlyOrder.getOrderNumber() == order.getOrderNumber()-1){
+            return order;
+        }else{
+            return null;
+        }
     }
 
     @Override
-    public void updateOrder(Order order) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Order updateOrder(Order order) {
+        if(onlyOrder.getOrderNumber() == order.getOrderNumber()){
+            return onlyOrder;
+        }else{
+            return null;
+        }
     }
 
     @Override
     public Order removeOrder(Order order) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(onlyOrder.getOrderNumber() == order.getOrderNumber()){
+            return onlyOrder;
+        }else{
+            return null;
+        }
     }
 
     @Override
     public Order getOrder(LocalDate date, int orderNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(onlyOrder.getOrderNumber() == orderNumber && onlyOrder.getDate().equals(date)){
+            return onlyOrder;
+        }else{
+            return null;
+        }
     }
 
     @Override
-    public HashMap<LocalDate, HashMap<Integer, Order>> exportAllData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Map<LocalDate, Map<Integer, Order>> exportAllData() {
+        Map<LocalDate, Map<Integer, Order>> ordersMap = new HashMap<>();
+        Map<Integer, Order> innerMap = new HashMap<>();
+        innerMap.put(onlyOrder.getOrderNumber(), onlyOrder);
+        ordersMap.put(onlyOrder.getDate(), innerMap);
+        return ordersMap;
+    }
+
+    @Override
+    public List<Map<Integer, Order>> getOrderNumbers() throws OrderPersistenceException {
+        List<Map<Integer, Order>> ordersMapList = new ArrayList<>();
+        Map<Integer, Order> ordersMap = new HashMap<>();
+        ordersMap.put(onlyOrder.getOrderNumber(), onlyOrder);
+        ordersMapList.add(ordersMap);
+        return ordersMapList;
     }
     
 }

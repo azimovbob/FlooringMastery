@@ -6,42 +6,89 @@
 package com.bobazimov.flooringmastery.dao;
 
 import com.bobazimov.flooringmastery.model.State;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 
 public class StateDaoImpl implements StateDao {
 
-    private Map<String,State> states = new HashMap<>();
-    
-    @Override
-    public List<State> getStates() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    private Map<String,State> states;
+    final String FILE_STATES_PATH = "Data/Taxes.txt";
+    final String DELIMETER = ",";
 
-    @Override
-    public State getState(String state) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void updateState(State state) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void createState(State state) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void deleteState(State state) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public StateDaoImpl() {
+        states = new HashMap<>();
     }
     
-    private State unmarshalling(String stateAsText){return null;} 
+     public StateDaoImpl(Map<String, State> states) {
+        this.states = states;
+    }
     
-    private void readStatesFromFile(){}
+    @Override
+    public List<State> getStates() throws OrderPersistenceException{
+        readStatesFromFile();
+        return new ArrayList<>(states.values());
+    }
+
+    @Override
+    public State getState(String state) throws OrderPersistenceException{
+        readStatesFromFile();
+        return states.get(state);
+    }
+
+    @Override
+    public State updateState(State state) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public State createState(State state) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public State deleteState(State state) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    private State unmarshalling(String stateAsText){
+        String[] statesToken = stateAsText.split(DELIMETER);
+        State state = new State();
+        state.setStateAbbrivation(statesToken[0]);
+        state.setState(statesToken[1]);
+        BigDecimal taxRate = new BigDecimal(statesToken[2]);
+        state.setTaxRate(taxRate);
+        
+        return state;
+    } 
+    
+    private void readStatesFromFile() throws OrderPersistenceException{
+        
+        Scanner scan;
+        
+        try{
+           scan = new Scanner(new BufferedReader(new FileReader(FILE_STATES_PATH))); 
+        }catch(FileNotFoundException ex){
+            throw new OrderPersistenceException("Could not find the file from data record ", ex);
+        }
+        
+        scan.nextLine();
+        String currentLine;
+        State currentState;
+        while(scan.hasNextLine()){
+            currentLine = scan.nextLine();
+            currentState = unmarshalling(currentLine);
+            states.put(currentState.getStateAbbrivation(), currentState);
+        }
+        
+        scan.close();
+    }
     
 }

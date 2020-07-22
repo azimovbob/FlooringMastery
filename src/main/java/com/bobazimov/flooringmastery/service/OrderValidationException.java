@@ -9,6 +9,13 @@ package com.bobazimov.flooringmastery.service;
  *
  * @author irabob
  */
-public class OrderValidationException {
+public class OrderValidationException extends Exception{
     
+   public  OrderValidationException(String message){
+       super(message);
+   }
+   
+   public OrderValidationException(String message, Throwable ex){
+       super(message, ex);
+   }
 }
