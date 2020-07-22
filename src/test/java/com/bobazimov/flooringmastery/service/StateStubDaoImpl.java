@@ -7,6 +7,8 @@ package com.bobazimov.flooringmastery.service;
 
 import com.bobazimov.flooringmastery.dao.StateDao;
 import com.bobazimov.flooringmastery.model.State;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +20,10 @@ public class StateStubDaoImpl implements StateDao{
     public State onlyState;
 
     public StateStubDaoImpl() {
+        onlyState = new State();
+        onlyState.setState("Washington");
+        onlyState.setStateAbbrivation("WA");
+        onlyState.setTaxRate(new BigDecimal("9.25"));
     }
     
     public StateStubDaoImpl(State onlyState) {
@@ -26,27 +32,49 @@ public class StateStubDaoImpl implements StateDao{
     
     @Override
     public List<State> getStates() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<State> stateList = new ArrayList<>();
+        stateList.add(onlyState);
+        return stateList;
     }
 
     @Override
     public State getState(String state) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(onlyState.getStateAbbrivation().equals(state)){
+            return onlyState;
+        }
+        else{
+            return null;
+        }
     }
 
     @Override
-    public void updateState(State state) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public State updateState(State state) {
+        if(onlyState.getStateAbbrivation().equals(state.getStateAbbrivation())){
+            return onlyState;
+        }
+        else{
+            return null;
+        }
     }
 
     @Override
-    public void createState(State state) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public State createState(State state) {
+        if(onlyState.getStateAbbrivation().equals(state.getStateAbbrivation())){
+            return onlyState;
+        }
+        else{
+            return null;
+        }
     }
 
     @Override
-    public void deleteState(State state) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public State deleteState(State state) {
+        if(onlyState.getStateAbbrivation().equals(state.getStateAbbrivation())){
+            return onlyState;
+        }
+        else{
+            return null;
+        }
     }
     
 }

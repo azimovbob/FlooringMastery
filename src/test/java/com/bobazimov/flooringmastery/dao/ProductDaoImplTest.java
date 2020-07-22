@@ -6,7 +6,9 @@
 package com.bobazimov.flooringmastery.dao;
 
 import com.bobazimov.flooringmastery.model.Product;
-import java.util.Map;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class ProductDaoImplTest {
     
-    Map<String, Product> products;
+    //Map<String, Product> products;
     
     ProductDao dao;
     
@@ -37,24 +39,45 @@ public class ProductDaoImplTest {
     
     @BeforeEach
     public void setUp() {
+        dao = new ProductDaoImpl();
     }
     
     @AfterEach
     public void tearDown() {
     }
 
-    @Test
-    public void testSomeMethod() {
-        fail("The test case is a prototype.");
-    }
-    
     @Test 
-    public void getProduct(){
+    public void testGetProduct() throws OrderPersistenceException{
+        //Arrange
+        Product product = new Product();
+        product.setProductType("Carpet");
+        BigDecimal productCost = new BigDecimal("2.25");
+        BigDecimal laborCost = new BigDecimal("2.10");
+        product.setCostPerSqFt(productCost);
+        product.setLaborCostPerSqft(laborCost);
+        
+        //Action 
+        Product product1 = dao.getProduct("Carpet");
+        //Assert
+        assertEquals(product, product1, "This two product objects must be eqaul");
+        assertNotNull(product1, "It must be not null");
     
     }
     
     @Test
-    public void getProducts(){
-    
-    }
+        public void testGetProducts()  throws OrderPersistenceException{
+            
+           List<Product> testProductList = new ArrayList<>();
+           Product product = new Product();
+           product.setProductType("Carpet");
+           BigDecimal productCost = new BigDecimal("2.25");
+           BigDecimal laborCost = new BigDecimal("2.10");
+           product.setCostPerSqFt(productCost);
+           product.setLaborCostPerSqft(laborCost);
+           
+           testProductList = dao.getProducts();
+           
+           assertNotNull(testProductList, "it must be not null");
+           assertTrue(testProductList.contains(product));
+        }
 }

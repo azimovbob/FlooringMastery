@@ -17,31 +17,36 @@ public interface StateDao {
     /**
      * 
      * @return 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public List<State> getStates();
+    public List<State> getStates() throws OrderPersistenceException;
     
     /**
      * 
      * @param state
      * @return State
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException
      */
-    public State getState(String state);
+    public State getState(String state) throws OrderPersistenceException;
     
     /**
      * 
      * @param state 
+     * @return  
      */
-    public void updateState(State state);
+    public State updateState(State state);
     
     /**
      * 
      * @param state 
+     * @return  
      */
-    public void createState(State state);
+    public State createState(State state);
     
     /**
      * 
      * @param state 
+     * @return  
      */
-    public void deleteState(State state);
+    public State deleteState(State state);
 }

@@ -5,12 +5,14 @@
  */
 package com.bobazimov.flooringmastery.service;
 
+import com.bobazimov.flooringmastery.dao.OrderPersistenceException;
 import com.bobazimov.flooringmastery.model.Order;
 import com.bobazimov.flooringmastery.model.Product;
 import com.bobazimov.flooringmastery.model.State;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -22,73 +24,94 @@ public interface OrderService {
      * 
      * @param order
      * @return 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    Order addOrder(Order order);
+    Order addOrder(Order order) throws OrderPersistenceException;
     
     /**
      * 
      * @param order 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    void removeOrder(Order order);
+    void removeOrder(Order order) throws OrderPersistenceException;
     
     /**
      * 
      * @param order 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    void updateOrder(Order order);
+    void updateOrder(Order order) throws OrderPersistenceException;
     
     /**
      * 
      * @param date
      * @return 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
+     * @throws com.bobazimov.flooringmastery.service.OrderValidationException 
      */
-    List<Order> getOrders(LocalDate date);
+    List<Order> getOrders(LocalDate date) throws OrderPersistenceException, OrderValidationException;
     
     /**
      * 
      * @param date
      * @param orderNumber
      * @return 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
+     * @throws com.bobazimov.flooringmastery.service.OrderValidationException 
      */
-    Order getOrder(LocalDate date, int orderNumber);
+    Order getOrder(LocalDate date, int orderNumber) throws OrderPersistenceException, OrderValidationException;
     
     /**
      * 
      * @param allOrders 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    void ExportAllData(HashMap<LocalDate, HashMap<Integer, Order>> allOrders);
-    
-    /**
-     * 
-     * @param customerValidation
-     * @return 
-     */
-    Order createOrder(String customerValidation);
+    void ExportAllData(Map<LocalDate, Map<Integer, Order>> allOrders) throws OrderPersistenceException;
     
     /**
      * 
      * @return 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    List<Product> getProducts();
+    List<Product> getProducts() throws OrderPersistenceException;
     
     /**
      * 
      * @param productType
      * @return 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    Product getProduct(String productType);
+    Product getProduct(String productType) throws OrderPersistenceException;
     
     /**
      * 
      * @return 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    List<State> getStates();
+    List<State> getStates() throws OrderPersistenceException;
     
     /**
      * 
      * @param stateName
      * @return 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    State getState(String stateName);
+    State getState(String stateName) throws OrderPersistenceException;
     
+    /**
+     * 
+     * @param order
+     * @return
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException
+     * @throws ValidateStateAndProductException 
+     * @throws com.bobazimov.flooringmastery.service.OrderDataValidationException 
+     */
+    Order createAndCalculateTotal(Order order)throws OrderPersistenceException, ValidateStateAndProductException, OrderDataValidationException ;
+    
+    /**
+     * 
+     * @return
+     * @throws OrderPersistenceException 
+     */
+    Map<LocalDate, Map<Integer, Order>> getAllOrders() throws OrderPersistenceException;
 }

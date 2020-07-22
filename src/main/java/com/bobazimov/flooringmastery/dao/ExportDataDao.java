@@ -7,7 +7,7 @@ package com.bobazimov.flooringmastery.dao;
 
 import com.bobazimov.flooringmastery.model.Order;
 import java.time.LocalDate;
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -18,8 +18,9 @@ public interface ExportDataDao {
     /**
      * 
      * @param allOrders 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public void getAllData(HashMap<LocalDate, HashMap<Integer, Order>> allOrders);
+    public void getAllData(Map<LocalDate, Map<Integer, Order>> allOrders) throws OrderPersistenceException;
     
     /**
      * 

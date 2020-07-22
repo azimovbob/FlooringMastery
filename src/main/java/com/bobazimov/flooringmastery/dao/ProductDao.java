@@ -17,31 +17,36 @@ public interface ProductDao {
     /**
      * 
      * @return 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public List<Product> getProducts();
+    public List<Product> getProducts() throws OrderPersistenceException;
     
     /**
      * 
      * @param productType
      * @return 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public Product getProduct(String productType);
+    public Product getProduct(String productType) throws OrderPersistenceException;
     
     /**
      * 
      * @param product 
+     * @return  
      */
-    public void createProduct(Product product);
+    public Product createProduct(Product product);
     
     /**
      * 
      * @param product 
+     * @return  
      */
-    public void deleteProduct(Product product);
+    public Product deleteProduct(Product product);
     
     /**
      * 
      * @param product 
+     * @return  
      */
-    public void updateProduct(Product product);
+    public Product updateProduct(Product product);
 }

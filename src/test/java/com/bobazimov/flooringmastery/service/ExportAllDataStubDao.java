@@ -8,7 +8,7 @@ package com.bobazimov.flooringmastery.service;
 import com.bobazimov.flooringmastery.dao.ExportDataDao;
 import com.bobazimov.flooringmastery.model.Order;
 import java.time.LocalDate;
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -21,7 +21,7 @@ public class ExportAllDataStubDao implements ExportDataDao {
     
 
     @Override
-    public void getAllData(HashMap<LocalDate, HashMap<Integer, Order>> allOrders) {
+    public void getAllData(Map<LocalDate, Map<Integer, Order>> allOrders) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

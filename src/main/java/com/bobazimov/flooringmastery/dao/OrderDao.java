@@ -8,6 +8,8 @@ package com.bobazimov.flooringmastery.dao;
 import com.bobazimov.flooringmastery.model.Order;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -19,40 +21,54 @@ public interface OrderDao {
      * 
      * @param date
      * @return 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public HashMap<Integer, Order> getOrders(LocalDate date);
+    List<Order> getOrders(LocalDate date) throws OrderPersistenceException;
     
     /**
      * 
      * @param order
      * @return 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public Order addOrder(Order order);
+    public Order addOrder(Order order) throws OrderPersistenceException;
     
     /**
      * 
      * @param order 
+     * @return  
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public void updateOrder(Order order);
+    public Order updateOrder(Order order) throws OrderPersistenceException;
     
     /**
      * 
      * @param order
      * @return 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public Order removeOrder(Order order);
+    public Order removeOrder(Order order) throws OrderPersistenceException;
     
     /**
      * 
      * @param date
      * @param orderNumber
      * @return 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public Order getOrder(LocalDate date, int orderNumber);
+    public Order getOrder(LocalDate date, int orderNumber) throws OrderPersistenceException;
     
     /**
      * 
      * @return 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public HashMap<LocalDate, HashMap<Integer, Order>> exportAllData();
+    public Map<LocalDate, Map<Integer, Order>> exportAllData() throws OrderPersistenceException;
+    
+    /**
+     * 
+     * @return
+     * @throws OrderPersistenceException 
+     */
+    public List<Map<Integer, Order>> getOrderNumbers() throws OrderPersistenceException;
 }

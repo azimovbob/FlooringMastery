@@ -6,7 +6,7 @@
 package com.bobazimov.flooringmastery.dao;
 
 import com.bobazimov.flooringmastery.model.State;
-import java.util.Map;
+import java.math.BigDecimal;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +20,9 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class StateDaoImplTest {
     
-    Map<String, State> states;
+    //Map<String, State> states;
+    
+    StateDao dao;
     
     public StateDaoImplTest() {
     }
@@ -35,23 +37,31 @@ public class StateDaoImplTest {
     
     @BeforeEach
     public void setUp() {
+       dao = new StateDaoImpl();
     }
     
     @AfterEach
     public void tearDown() {
     }
-
+  
     @Test
-    public void testSomeMethod() {
-        fail("The test case is a prototype.");
+    public void testGetState() throws Exception{
+        
+        
+        State state = new State();
+        
+        state.setState("Texas");
+        state.setStateAbbrivation("TX");
+        BigDecimal taxRate = new BigDecimal("4.45");
+        state.setTaxRate(taxRate);
+        
+        State state1 = dao.getState("TX");
+        
+        assertEquals(state1, state, "objects must be equal");
+        assertNotNull(state1, "It should not be null");
     }
     
-    @Test
-    public void getState(){
-    
-    }
-    
-    @Test void getStates(){
+    @Test void testGetStates(){
     
     }
     
