@@ -38,9 +38,10 @@ public interface OrderService {
     /**
      * 
      * @param order 
+     * @return  
      * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    void updateOrder(Order order) throws OrderPersistenceException;
+    Order updateOrder(Order order) throws OrderPersistenceException;
     
     /**
      * 
@@ -66,7 +67,7 @@ public interface OrderService {
      * @param allOrders 
      * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    void ExportAllData(Map<LocalDate, Map<Integer, Order>> allOrders) throws OrderPersistenceException;
+    void exportAllData(Map<LocalDate, Map<Integer, Order>> allOrders) throws OrderPersistenceException;
     
     /**
      * 

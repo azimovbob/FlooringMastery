@@ -66,8 +66,10 @@ public class OrderDaoImpl implements OrderDao {
     public Order updateOrder(Order order) throws OrderPersistenceException{
         readFromFile();
         outer.get(order.getDate()).replace(order.getOrderNumber(), order);
+        Order updatedOrder = outer.get(order.getDate()).get(order.getOrderNumber());
         writeToFile();
-        return outer.get(order.getDate()).get(order.getOrderNumber());
+        return updatedOrder;
+                //outer.get(order.getDate()).get(order.getOrderNumber());
     }
 
     @Override
@@ -75,7 +77,7 @@ public class OrderDaoImpl implements OrderDao {
         readFromFile();
         Order removedOrder = outer.get(order.getDate()).remove(order.getOrderNumber());
         writeToFile();
-        return outer.get(removedOrder.getDate()).get(removedOrder.getOrderNumber());
+        return removedOrder;
     }
 
     @Override

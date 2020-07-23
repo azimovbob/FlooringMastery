@@ -173,9 +173,9 @@ public class OrderServiceImplTest {
         }
         fail("Wrong exception was thrown");
     }
-    
+
     @Test
-    public void testAddOrder() throws OrderPersistenceException{
+    public void testAddOrder() throws OrderPersistenceException {
         String date = "06012013";
         LocalDate ld = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMddyyyy"));
         int orderNumber = 2;
@@ -205,17 +205,16 @@ public class OrderServiceImplTest {
         onlyOrder.setTotalTax(tax);
         onlyOrder.setTotal(total);
         onlyOrder.setDate(ld);
-        
-        
+
         Order addedOrder = service.addOrder(onlyOrder);
-        
+
         assertNotNull(addedOrder, "It should not be null");
         assertEquals(addedOrder, onlyOrder, "Both orders must be equal");
     }
 
     @Test
     public void createAndCalculateOrder() throws OrderPersistenceException, ValidateStateAndProductException,
-                                                 OrderDataValidationException, OrderValidationException{
+            OrderDataValidationException, OrderValidationException {
         String date = "06012013";
         LocalDate ld = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMddyyyy"));
         int orderNumber = 2;
@@ -238,33 +237,113 @@ public class OrderServiceImplTest {
         onlyOrder.setProduct(product);
         onlyOrder.setState(state);
         onlyOrder.setDate(ld);
-        
+
         Order calculatedOrder = service.createAndCalculateTotal(onlyOrder);
         Order testOrder = service.getOrder(onlyOrder.getDate(), onlyOrder.getOrderNumber());
-        
+
         assertNotNull(calculatedOrder, "It must not be null");
         assertEquals(calculatedOrder, testOrder, "Orders must be equal");
     }
-    
+
     @Test
-    public void getOrdersByDate() throws OrderValidationException, OrderPersistenceException{
-        
+    public void getOrdersByDate() throws OrderValidationException, OrderPersistenceException {
+
         String date = "06012013";
         LocalDate ld = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMddyyyy"));
         List<Order> testOrderList;
-        
+
         testOrderList = service.getOrders(ld);
-        
-        
+
         assertFalse(testOrderList.isEmpty());
     }
-    
-    @Test 
-    public void testRemoveOrder() throws OrderPersistenceException, OrderValidationException{
+
+    @Test
+    public void testRemoveOrder() throws OrderPersistenceException, OrderValidationException {
         String date = "06012013";
         LocalDate ld = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMddyyyy"));
         int orderNumber = 2;
+
+        Order onlyOrder = new Order();
+        onlyOrder.setOrderNumber(2);
+        onlyOrder.setCustomerName("Doctor Who");
+        State state = new State();
+        state.setStateAbbrivation("WA");
+        BigDecimal taxRate = new BigDecimal("9.25");
+        state.setTaxRate(taxRate);
+        Product product = new Product();
+        product.setProductType("Wood");
+        BigDecimal area = new BigDecimal("243.00");
+        onlyOrder.setArea(area);
+        BigDecimal costPerSqFt = new BigDecimal("5.15");
+        BigDecimal laborCostPerSqFt = new BigDecimal("4.75");
+        product.setCostPerSqFt(costPerSqFt);
+        product.setLaborCostPerSqft(laborCostPerSqFt);
+        onlyOrder.setProduct(product);
+        onlyOrder.setState(state);
+        BigDecimal materialCost = new BigDecimal("1251.45");
+        BigDecimal laborCost = new BigDecimal("1154.25");
+        BigDecimal tax = new BigDecimal("222.52");
+        BigDecimal total = new BigDecimal("2628.22");
+        onlyOrder.setTotalProductCost(materialCost);
+        onlyOrder.setTotalLaborCost(laborCost);
+        onlyOrder.setTotalTax(tax);
+        onlyOrder.setTotal(total);
+        onlyOrder.setDate(ld);
+
+        Order orderWho = service.getOrder(onlyOrder.getDate(), onlyOrder.getOrderNumber());
+
+        assertNotNull(orderWho, "Getting order with number 2 should be not null");
+        assertEquals(orderWho, onlyOrder, "Orders must be equal");
+    }
+
+    @Test
+    public void testUpdateOrder() throws OrderPersistenceException {
+
+        String date = "06012013";
+        LocalDate ld = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMddyyyy"));
+        int orderNumber = 2;
+
+        Order onlyOrder = new Order();
+        onlyOrder.setCustomerName("Doctor Who");
+        onlyOrder.setOrderNumber(orderNumber);
+        State state = new State();
+        state.setStateAbbrivation("WA");
+        BigDecimal taxRate = new BigDecimal("9.25");
+        state.setTaxRate(taxRate);
+        Product product = new Product();
+        product.setProductType("Carpet");
+        BigDecimal area = new BigDecimal("243.00");
+        onlyOrder.setArea(area);
+        BigDecimal costPerSqFt = new BigDecimal("5.15");
+        BigDecimal laborCostPerSqFt = new BigDecimal("4.75");
+        product.setCostPerSqFt(costPerSqFt);
+        product.setLaborCostPerSqft(laborCostPerSqFt);
+        onlyOrder.setProduct(product);
+        onlyOrder.setState(state);
+        BigDecimal materialCost = new BigDecimal("1251.45");
+        BigDecimal laborCost = new BigDecimal("1154.25");
+        BigDecimal tax = new BigDecimal("222.52");
+        BigDecimal total = new BigDecimal("2628.22");
+        onlyOrder.setTotalProductCost(materialCost);
+        onlyOrder.setTotalLaborCost(laborCost);
+        onlyOrder.setTotalTax(tax);
+        onlyOrder.setTotal(total);
+        onlyOrder.setDate(ld);
+
+        Order updatedOrder = service.updateOrder(onlyOrder);
+
+        assertNotNull(updatedOrder, "It's null");
+        assertNotEquals(updatedOrder, onlyOrder);
+
+    }
+    
+    @Test
+    public void testExportData() throws OrderPersistenceException{
         
+        String date = "06012013";
+        LocalDate ld = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMddyyyy"));
+        int orderNumber = 2;
+
         Order onlyOrder = new Order();
         onlyOrder.setOrderNumber(2);
         onlyOrder.setCustomerName("Doctor Who");
@@ -292,15 +371,7 @@ public class OrderServiceImplTest {
         onlyOrder.setTotal(total);
         onlyOrder.setDate(ld);
         
-        Order orderWho = service.getOrder(onlyOrder.getDate(), onlyOrder.getOrderNumber());
-        
-        assertNotNull(orderWho, "Getting order with number 2 should be not null");
-        assertEquals(orderWho, onlyOrder, "Orders must be equal");
-    }
-    
-    @Test
-    public void testUpdateOrder() throws OrderPersistenceException{
-    
+        assertNotNull(service.getAllOrders());
     }
 }
 
