@@ -90,8 +90,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void updateOrder(Order order) throws OrderPersistenceException {
-        orderDao.updateOrder(order);
+    public Order updateOrder(Order order) throws OrderPersistenceException {
+        return orderDao.updateOrder(order);
     }
 
     @Override
@@ -127,7 +127,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void ExportAllData(Map<LocalDate, Map<Integer, Order>> allOrders) throws OrderPersistenceException{
+    public void exportAllData(Map<LocalDate, Map<Integer, Order>> allOrders) throws OrderPersistenceException{
         exportDao.getAllData(allOrders);
     }
 

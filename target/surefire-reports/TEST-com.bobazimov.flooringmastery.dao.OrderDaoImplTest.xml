@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.bobazimov.flooringmastery.dao.OrderDaoImplTest" time="0.311" tests="6" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.bobazimov.flooringmastery.dao.OrderDaoImplTest" time="70.156" tests="6" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.6+10"/>
@@ -33,7 +33,9 @@
     <property name="java.class.version" value="55.0"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="jpda.listen" value="true"/>
     <property name="os.version" value="10.15.5"/>
+    <property name="jpda.address" value="52558"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="user.home" value="/Users/irabob"/>
     <property name="user.timezone" value="America/New_York"/>
@@ -42,9 +44,10 @@
     <property name="java.specification.version" value="11"/>
     <property name="user.name" value="irabob"/>
     <property name="java.class.path" value="/Users/irabob/Downloads/netbeans/java/maven/boot/plexus-classworlds-2.5.2.jar"/>
+    <property name="maven.surefire.debug" value="-agentlib:jdwp=transport=dt_socket,server=n,address=52558"/>
     <property name="java.vm.specification.version" value="11"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=com.bobazimov.flooringmastery.dao.OrderDaoImplTest -Dmaven.ext.class.path=/Users/irabob/Downloads/netbeans/java/maven-nblib/netbeans-eventspy.jar surefire:test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=com.bobazimov.flooringmastery.dao.OrderDaoImplTest -DforkMode=once -Dmaven.surefire.debug=-agentlib:jdwp=transport=dt_socket,server=n,address=52558 -Djpda.listen=true -Djpda.address=52558 -Dmaven.ext.class.path=/Users/irabob/Downloads/netbeans/java/maven-nblib/netbeans-eventspy.jar surefire:test"/>
     <property name="java.home" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -56,6 +59,7 @@
     <property name="file.separator" value="/"/>
     <property name="java.version.date" value="2020-01-14"/>
     <property name="java.vendor.url.bug" value="https://github.com/AdoptOpenJDK/openjdk-support/issues"/>
+    <property name="forkMode" value="once"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="java.vendor.version" value="AdoptOpenJDK"/>
@@ -63,10 +67,10 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testGetOrder" classname="com.bobazimov.flooringmastery.dao.OrderDaoImplTest" time="0.067"/>
-  <testcase name="update" classname="com.bobazimov.flooringmastery.dao.OrderDaoImplTest" time="0.184"/>
-  <testcase name="testAddOrder" classname="com.bobazimov.flooringmastery.dao.OrderDaoImplTest" time="0.009"/>
-  <testcase name="testGetOrdersByDate" classname="com.bobazimov.flooringmastery.dao.OrderDaoImplTest" time="0.003"/>
-  <testcase name="testExportAllData" classname="com.bobazimov.flooringmastery.dao.OrderDaoImplTest" time="0.002"/>
-  <testcase name="testGetRemoveOrder" classname="com.bobazimov.flooringmastery.dao.OrderDaoImplTest" time="0.017"/>
+  <testcase name="testGetOrder" classname="com.bobazimov.flooringmastery.dao.OrderDaoImplTest" time="0.091"/>
+  <testcase name="update" classname="com.bobazimov.flooringmastery.dao.OrderDaoImplTest" time="70.035"/>
+  <testcase name="testAddOrder" classname="com.bobazimov.flooringmastery.dao.OrderDaoImplTest" time="0.003"/>
+  <testcase name="testGetOrdersByDate" classname="com.bobazimov.flooringmastery.dao.OrderDaoImplTest" time="0.002"/>
+  <testcase name="testExportAllData" classname="com.bobazimov.flooringmastery.dao.OrderDaoImplTest" time="0.003"/>
+  <testcase name="testGetRemoveOrder" classname="com.bobazimov.flooringmastery.dao.OrderDaoImplTest" time="0.01"/>
 </testsuite>

@@ -189,7 +189,7 @@ public class OrderDaoImplTest {
         Order testOrder1 = dao.getOrder(testLd, testOrderNumber);
         Order testRemovedOrder = dao.removeOrder(testOrder1);
         
-        assertNull(testRemovedOrder, "Removed order must be null");
+        assertNotNull(testRemovedOrder, "Removed order must be not null");
         
     }
     
@@ -227,7 +227,7 @@ public class OrderDaoImplTest {
         order.setTotalTax(tax);
         order.setTotal(total);
         order.setDate(ld);
-        
+        Order getOrder = dao.getOrder(order.getDate(), orderNumber);
         Order testOrder = dao.updateOrder(order);
         
         assertEquals(testOrder, order, "This two must be eqaul");
