@@ -1,0 +1,11 @@
+07/24/2020 12:16:29 EROOR: Orders with given date do not exist
+07/24/2020 12:50:24 ERROR: Wrong state, please enter different state
+07/24/2020 15:26:44 null
+07/24/2020 15:26:44 null
+07/24/2020 15:26:44 null
+07/24/2020 16:27:19 null
+07/24/2020 16:27:19 null
+07/24/2020 16:27:19 null
+07/24/2020 16:46:13 EROOR: Orders with given date do not exist
+07/24/2020 16:46:37 No such order with given number
+07/24/2020 17:28:47 addOrder: Order{orderNumber=5, customerName=Bob , state=State{state=Washington, stateAbbrivation=WA, taxRate=9.25}, product=Product{productType=Tile, costPerSqFt=3.50, laborCostPerSqft=4.15}, area=200, totalLaborCost=830.00, totalProductCost=700.00, totalTax=141.52, total=1671.52, date=2020-09-01}

@@ -31,7 +31,7 @@ public interface OrderDao {
      * @return 
      * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public Order addOrder(Order order) throws OrderPersistenceException;
+    Order addOrder(Order order) throws OrderPersistenceException;
     
     /**
      * 
@@ -39,7 +39,7 @@ public interface OrderDao {
      * @return  
      * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public Order updateOrder(Order order) throws OrderPersistenceException;
+   Order updateOrder(Order order) throws OrderPersistenceException;
     
     /**
      * 
@@ -47,7 +47,7 @@ public interface OrderDao {
      * @return 
      * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public Order removeOrder(Order order) throws OrderPersistenceException;
+   Order removeOrder(Order order) throws OrderPersistenceException;
     
     /**
      * 
@@ -56,19 +56,27 @@ public interface OrderDao {
      * @return 
      * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public Order getOrder(LocalDate date, int orderNumber) throws OrderPersistenceException;
+   Order getOrder(LocalDate date, int orderNumber) throws OrderPersistenceException;
     
     /**
      * 
      * @return 
      * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public Map<LocalDate, Map<Integer, Order>> exportAllData() throws OrderPersistenceException;
+    Map<LocalDate, Map<Integer, Order>> exportAllData() throws OrderPersistenceException;
     
     /**
      * 
      * @return
      * @throws OrderPersistenceException 
      */
-    public List<Map<Integer, Order>> getOrderNumbers() throws OrderPersistenceException;
+    List<Map<Integer, Order>> getOrderNumbers() throws OrderPersistenceException;
+    
+    /**
+     * 
+     * @return 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException
+     */
+    
+    List<LocalDate> orderDate() throws OrderPersistenceException; 
 }

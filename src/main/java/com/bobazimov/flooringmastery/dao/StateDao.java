@@ -6,7 +6,7 @@
 package com.bobazimov.flooringmastery.dao;
 
 import com.bobazimov.flooringmastery.model.State;
-import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -19,7 +19,7 @@ public interface StateDao {
      * @return 
      * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public List<State> getStates() throws OrderPersistenceException;
+    public Map<String, State> getStates() throws OrderPersistenceException;
     
     /**
      * 

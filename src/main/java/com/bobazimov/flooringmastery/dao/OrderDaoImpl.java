@@ -44,6 +44,8 @@ public class OrderDaoImpl implements OrderDao {
         readFromFile();
         return new ArrayList<>(outer.get(date).values());
     }
+    
+    
 
     @Override
     public Order addOrder(Order order) throws OrderPersistenceException{
@@ -199,6 +201,12 @@ public class OrderDaoImpl implements OrderDao {
     public List<Map<Integer, Order>> getOrderNumbers() throws OrderPersistenceException{
         readFromFile();
         return new ArrayList<>(outer.values());
+    }
+
+    @Override
+    public List<LocalDate> orderDate() throws OrderPersistenceException {
+        readFromFile();
+        return new ArrayList<>(outer.keySet());
     }
     
 }

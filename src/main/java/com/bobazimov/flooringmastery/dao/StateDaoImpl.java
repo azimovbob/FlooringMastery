@@ -10,9 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -32,9 +30,9 @@ public class StateDaoImpl implements StateDao {
     }
     
     @Override
-    public List<State> getStates() throws OrderPersistenceException{
+    public Map<String, State> getStates() throws OrderPersistenceException{
         readStatesFromFile();
-        return new ArrayList<>(states.values());
+        return states;
     }
 
     @Override
