@@ -16,7 +16,7 @@ import com.bobazimov.flooringmastery.model.State;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +27,7 @@ public class OrderServiceImpl implements OrderService {
     ProductDao productDao;
     StateDao stateDao;
     ExportDataDao exportDao;
+    
     public OrderServiceImpl(OrderDao orderDao, ProductDao productDao, StateDao stateDao, ExportDataDao exportDao) {
         this.orderDao = orderDao;
         this.productDao = productDao;
@@ -34,14 +35,14 @@ public class OrderServiceImpl implements OrderService {
         this.exportDao = exportDao;
     }
     
-    private void validatedOrder(Order order) throws OrderPersistenceException, ValidateStateAndProductException{
-        if(stateDao.getState(order.getState().getStateAbbrivation()) == null){
-            throw new ValidateStateAndProductException("ERROR: Wrong state");
-        }
-        if(productDao.getProduct(order.getProduct().getProductType()) == null){
-            throw new ValidateStateAndProductException("ERROR: Wrong product type");
-        }
-    }
+//    private void validatedOrder(Order order) throws OrderPersistenceException, ValidateStateAndProductException{
+//        if(stateDao.getState(order.getState().getStateAbbrivation()) == null){
+//            throw new ValidateStateAndProductException("ERROR: Wrong state");
+//        }
+//        if(productDao.getProduct(order.getProduct().getProductType()) == null){
+//            throw new ValidateStateAndProductException("ERROR: Wrong product type");
+//        }
+//    }
     
     private int generateOrderNumber() throws OrderPersistenceException{
         int max = 0;
@@ -59,7 +60,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order createAndCalculateTotal(Order order) throws OrderPersistenceException, ValidateStateAndProductException, OrderDataValidationException {
         validateOrderData(order);
-        validatedOrder(order);
         BigDecimal percentage = new BigDecimal("100");
         BigDecimal materialCost = order.getArea().multiply(order.getProduct().getCostPerSqFt());
         BigDecimal laborCost = order.getArea().multiply(order.getProduct().getLaborCostPerSqft());
@@ -74,6 +74,7 @@ public class OrderServiceImpl implements OrderService {
         
         return updatingOrder;
     }
+    
     @Override
     public Order addOrder(Order order) throws OrderPersistenceException {
         
@@ -83,7 +84,7 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.addOrder(newOrder);
         
     }
-
+    
     @Override
     public void removeOrder(Order order) throws OrderPersistenceException{
         orderDao.removeOrder(order);
@@ -96,33 +97,36 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getOrders(LocalDate date) throws OrderPersistenceException, OrderValidationException{
-        validateOrder(date);
+        validateOrderDate(date);
         return orderDao.getOrders(date);
     }
 
     @Override
     public Order getOrder(LocalDate date, int orderNumber) throws OrderPersistenceException, OrderValidationException{
-        validateOrder(date, orderNumber);
+        validateOrderDate(date);
+        validateOrderNumber(date, orderNumber);
         return orderDao.getOrder(date, orderNumber);
     }
 
     @Override
     public List<Product> getProducts() throws OrderPersistenceException{
-        return productDao.getProducts();
+        return new ArrayList<>(productDao.getProducts().values());
     }
 
     @Override
-    public Product getProduct(String productType) throws OrderPersistenceException{
+    public Product getProduct(String productType) throws OrderPersistenceException, ValidateStateAndProductException{
+        validateProduct(productType);
         return productDao.getProduct(productType);
     }
 
     @Override
     public List<State> getStates() throws OrderPersistenceException{
-        return stateDao.getStates();
+        return new ArrayList<>(stateDao.getStates().values());
     }
 
     @Override
-    public State getState(String stateName) throws OrderPersistenceException{
+    public State getState(String stateName) throws OrderPersistenceException, ValidateStateAndProductException{
+        validateState(stateName);
         return stateDao.getState(stateName);
     }
 
@@ -130,15 +134,15 @@ public class OrderServiceImpl implements OrderService {
     public void exportAllData(Map<LocalDate, Map<Integer, Order>> allOrders) throws OrderPersistenceException{
         exportDao.getAllData(allOrders);
     }
-
-    private void validateOrder(LocalDate date, int orderNumber) throws OrderPersistenceException, OrderValidationException{
-        if(orderDao.getOrder(date, orderNumber) == null){
-            throw new OrderValidationException("ERROR: Order with given number does not exist");
+    
+    private void validateOrderNumber(LocalDate date, int orderNumber) throws OrderPersistenceException, OrderValidationException{
+        if(!orderDao.exportAllData().get(date).keySet().contains(orderNumber)){
+            throw new OrderValidationException("No such order with given number");
         }
     }
     
-    private void validateOrder(LocalDate date)throws OrderPersistenceException, OrderValidationException{
-        if(orderDao.getOrders(date).isEmpty()){
+    private void validateOrderDate(LocalDate date)throws OrderPersistenceException, OrderValidationException{
+        if(!orderDao.orderDate().contains(date)){
             throw new OrderValidationException("EROOR: Orders with given date do not exist");
         }
     }
@@ -156,6 +160,18 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Map<LocalDate, Map<Integer, Order>> getAllOrders() throws OrderPersistenceException {
         return orderDao.exportAllData();
+    }
+    
+    private void validateState(String state) throws OrderPersistenceException, ValidateStateAndProductException{
+        if(!stateDao.getStates().containsKey(state)){
+            throw new ValidateStateAndProductException("ERROR: Wrong state, please enter different state");
+        }
+    }
+     
+    private void validateProduct(String productType) throws OrderPersistenceException, ValidateStateAndProductException{
+        if(!productDao.getProducts().containsKey(productType)){
+            throw new ValidateStateAndProductException("ERROR: Wrong product");
+        }
     }
     
     

@@ -5,12 +5,18 @@
  */
 package com.bobazimov.flooringmastery;
 
+import com.bobazimov.flooringmastery.controller.OrderController;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 /**
  *
  * @author irabob
  */
 public class App {
     public static void main(String[] args) {
-        
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        OrderController controller = ctx.getBean("controller", OrderController.class);
+        controller.run();
     }
 }

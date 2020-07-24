@@ -14,6 +14,7 @@ public interface AuditDao {
     /**
      * 
      * @param message 
+     * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public void writeAuditEntry(String message);
+    public void writeAuditEntry(String message) throws OrderPersistenceException;
 }

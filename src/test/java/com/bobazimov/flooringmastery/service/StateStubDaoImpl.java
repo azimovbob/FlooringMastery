@@ -8,8 +8,8 @@ package com.bobazimov.flooringmastery.service;
 import com.bobazimov.flooringmastery.dao.StateDao;
 import com.bobazimov.flooringmastery.model.State;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -31,10 +31,10 @@ public class StateStubDaoImpl implements StateDao{
     }
     
     @Override
-    public List<State> getStates() {
-        List<State> stateList = new ArrayList<>();
-        stateList.add(onlyState);
-        return stateList;
+    public Map<String, State> getStates() {
+        Map<String, State> stateMap = new HashMap<>();
+        stateMap.put(onlyState.getStateAbbrivation(), onlyState);
+        return stateMap;
     }
 
     @Override

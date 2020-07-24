@@ -9,8 +9,8 @@ import com.bobazimov.flooringmastery.dao.OrderPersistenceException;
 import com.bobazimov.flooringmastery.dao.ProductDao;
 import com.bobazimov.flooringmastery.model.Product;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -32,10 +32,10 @@ public class ProductStubDaoImpl implements ProductDao{
     }
     
     @Override
-    public List<Product> getProducts() throws OrderPersistenceException{
-        List<Product> productList = new ArrayList<>();
-        productList.add(onlyProduct);
-        return productList;
+    public Map<String, Product> getProducts() throws OrderPersistenceException{
+        Map<String, Product> products = new HashMap<>();
+        products.put(onlyProduct.getProductType(), onlyProduct);
+        return products;
     }
 
     @Override

@@ -42,5 +42,9 @@ public interface UserIO {
     
     BigDecimal readBigDecimal(String prompt, BigDecimal min);
     
+    String readCustomerName(String prompt);
     
+    String readUpdatingCustomerName(String prompt); 
+    
+    BigDecimal readBigDecimalUpdate(String prompt);
 }

@@ -123,5 +123,12 @@ public class OrderStubDaoImpl implements OrderDao{
         ordersMapList.add(ordersMap);
         return ordersMapList;
     }
+
+    @Override
+    public List<LocalDate> orderDate() throws OrderPersistenceException {
+       List<LocalDate> orderDate = new ArrayList<>();
+       orderDate.add(onlyOrder.getDate());
+       return orderDate;
+    }
     
 }

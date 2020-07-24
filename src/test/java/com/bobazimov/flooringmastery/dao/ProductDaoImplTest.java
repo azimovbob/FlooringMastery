@@ -67,7 +67,7 @@ public class ProductDaoImplTest {
     @Test
         public void testGetProducts()  throws OrderPersistenceException{
             
-           List<Product> testProductList = new ArrayList<>();
+           List<Product> testProductList;
            Product product = new Product();
            product.setProductType("Carpet");
            BigDecimal productCost = new BigDecimal("2.25");
@@ -75,7 +75,7 @@ public class ProductDaoImplTest {
            product.setCostPerSqFt(productCost);
            product.setLaborCostPerSqft(laborCost);
            
-           testProductList = dao.getProducts();
+           testProductList = new ArrayList<>(dao.getProducts().values());
            
            assertNotNull(testProductList, "it must be not null");
            assertTrue(testProductList.contains(product));

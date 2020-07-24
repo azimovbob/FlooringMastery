@@ -67,9 +67,9 @@ public class ProductDaoImpl implements ProductDao {
     }
     
     @Override
-    public List<Product> getProducts() throws OrderPersistenceException{
+    public Map<String, Product> getProducts() throws OrderPersistenceException{
         readFromFile();
-        return new ArrayList<>(products.values());
+        return products;
     }
 
     @Override

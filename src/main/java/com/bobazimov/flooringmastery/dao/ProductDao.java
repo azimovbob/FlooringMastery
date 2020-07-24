@@ -6,7 +6,7 @@
 package com.bobazimov.flooringmastery.dao;
 
 import com.bobazimov.flooringmastery.model.Product;
-import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -19,7 +19,7 @@ public interface ProductDao {
      * @return 
      * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
      */
-    public List<Product> getProducts() throws OrderPersistenceException;
+    public Map<String, Product> getProducts() throws OrderPersistenceException;
     
     /**
      * 

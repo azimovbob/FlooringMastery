@@ -81,8 +81,9 @@ public interface OrderService {
      * @param productType
      * @return 
      * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
+     * @throws com.bobazimov.flooringmastery.service.ValidateStateAndProductException 
      */
-    Product getProduct(String productType) throws OrderPersistenceException;
+    Product getProduct(String productType) throws OrderPersistenceException, ValidateStateAndProductException;
     
     /**
      * 
@@ -96,8 +97,9 @@ public interface OrderService {
      * @param stateName
      * @return 
      * @throws com.bobazimov.flooringmastery.dao.OrderPersistenceException 
+     * @throws com.bobazimov.flooringmastery.service.ValidateStateAndProductException 
      */
-    State getState(String stateName) throws OrderPersistenceException;
+    State getState(String stateName) throws OrderPersistenceException, ValidateStateAndProductException;
     
     /**
      * 
