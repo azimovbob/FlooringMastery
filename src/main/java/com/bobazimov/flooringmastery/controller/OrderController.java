@@ -110,6 +110,7 @@ public class OrderController {
         LocalDate date = view.getOrderDate();
         int orderNumber = view.getOrderNumber();
         Order removingOrder = service.getOrder(date, orderNumber);
+        view.displayOrderWithOrderNumber(removingOrder);
         String confirm = view.getConfirmation();
         if(confirm.equals("Y") || confirm.equals("y")){
             service.removeOrder(removingOrder);

@@ -1,28 +1,3 @@
-07/24/2020 12:16:29 EROOR: Orders with given date do not exist
-07/24/2020 12:50:24 ERROR: Wrong state, please enter different state
-07/24/2020 15:26:44 null
-07/24/2020 15:26:44 null
-07/24/2020 15:26:44 null
-07/24/2020 16:27:19 null
-07/24/2020 16:27:19 null
-07/24/2020 16:27:19 null
-07/24/2020 16:46:13 EROOR: Orders with given date do not exist
-07/24/2020 16:46:37 No such order with given number
-07/24/2020 17:28:47 addOrder: Order{orderNumber=5, customerName=Bob , state=State{state=Washington, stateAbbrivation=WA, taxRate=9.25}, product=Product{productType=Tile, costPerSqFt=3.50, laborCostPerSqft=4.15}, area=200, totalLaborCost=830.00, totalProductCost=700.00, totalTax=141.52, total=1671.52, date=2020-09-01}
-07/26/2020 23:27:54 EROOR: Orders with given date do not exist
-07/26/2020 23:31:42 No such order with given number
-07/26/2020 23:39:05 addOrder: Order{orderNumber=4, customerName=John Smith, state=State{state=Kentucky, stateAbbrivation=KY, taxRate=6.00}, product=Product{productType=Laminate, costPerSqFt=1.75, laborCostPerSqft=2.10}, area=105.50, totalLaborCost=221.55, totalProductCost=184.62, totalTax=24.37, total=430.54, date=2020-08-01}
-07/26/2020 23:51:42 addOrder: Order{orderNumber=4, customerName=Liquor store; Inc., state=State{state=Kentucky, stateAbbrivation=KY, taxRate=6.00}, product=Product{productType=Tile, costPerSqFt=3.50, laborCostPerSqft=4.15}, area=100, totalLaborCost=415.00, totalProductCost=350.00, totalTax=45.90, total=810.90, date=2020-07-26}
-07/26/2020 23:55:22 EROOR: Orders with given date do not exist
-07/26/2020 23:56:28 addOrder: Order{orderNumber=4, customerName=Joshua, state=State{state=Texas, stateAbbrivation=TX, taxRate=4.45}, product=Product{productType=Tile, costPerSqFt=3.50, laborCostPerSqft=4.15}, area=400, totalLaborCost=1660.00, totalProductCost=1400.00, totalTax=136.17, total=3196.17, date=2021-08-10}
-07/27/2020 00:12:21 EROOR: Orders with given date do not exist
-07/27/2020 00:13:40 EROOR: Orders with given date do not exist
-07/27/2020 00:14:11 EROOR: Orders with given date do not exist
-07/27/2020 00:16:45 ERROR: Wrong state, please enter different state
-07/27/2020 00:18:19 ERROR: Wrong product
-07/27/2020 00:19:05 addOrder: Order{orderNumber=5, customerName=Tenzin, state=State{state=Washington, stateAbbrivation=WA, taxRate=9.25}, product=Product{productType=Carpet, costPerSqFt=2.25, laborCostPerSqft=2.10}, area=101, totalLaborCost=212.10, totalProductCost=227.25, totalTax=40.63, total=479.98, date=2020-10-21}
-07/27/2020 00:21:02 addOrder: Order{orderNumber=6, customerName=Ali, state=State{state=Kentucky, stateAbbrivation=KY, taxRate=6.00}, product=Product{productType=Carpet, costPerSqFt=2.25, laborCostPerSqft=2.10}, area=101, totalLaborCost=212.10, totalProductCost=227.25, totalTax=26.36, total=465.71, date=2020-09-09}
-07/27/2020 00:30:54 ERROR: Wrong product
-07/27/2020 00:31:23 ERROR: Wrong product
-07/27/2020 00:31:36 ERROR: Wrong state, please enter different state
-07/27/2020 00:32:12 addOrder: Order{orderNumber=7, customerName=Trump, state=State{state=Kentucky, stateAbbrivation=KY, taxRate=6.00}, product=Product{productType=Wood, costPerSqFt=5.15, laborCostPerSqft=4.75}, area=100, totalLaborCost=475.00, totalProductCost=515.00, totalTax=59.40, total=1049.40, date=2020-10-21}
+07/27/2020 13:40:48 addOrder: Order{orderNumber=8, customerName=Tenzin, state=State{state=Texas, stateAbbrivation=TX, taxRate=4.45}, product=Product{productType=Carpet, costPerSqFt=2.25, laborCostPerSqft=2.10}, area=300, totalLaborCost=630.00, totalProductCost=675.00, totalTax=58.07, total=1363.07, date=2020-10-10}
+07/27/2020 13:41:20 removeOrder: Order{orderNumber=8, customerName=Tenzin, state=State{state=null, stateAbbrivation=TX, taxRate=4.45}, product=Product{productType=Carpet, costPerSqFt=2.25, laborCostPerSqft=2.10}, area=300, totalLaborCost=630.00, totalProductCost=675.00, totalTax=58.07, total=1363.07, date=2020-10-10}
+07/27/2020 13:41:52 addOrder: Order{orderNumber=8, customerName=Bob, state=State{state=Kentucky, stateAbbrivation=KY, taxRate=6.00}, product=Product{productType=Wood, costPerSqFt=5.15, laborCostPerSqft=4.75}, area=400, totalLaborCost=1900.00, totalProductCost=2060.00, totalTax=237.60, total=4197.60, date=2020-12-06}

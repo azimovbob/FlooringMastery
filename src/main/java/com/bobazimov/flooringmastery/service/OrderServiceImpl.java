@@ -133,8 +133,8 @@ public class OrderServiceImpl implements OrderService {
     }
     
     private void validateOrderDate(LocalDate date)throws OrderPersistenceException, OrderValidationException{
-        if(!orderDao.orderDate().contains(date)){
-            throw new OrderValidationException("EROOR: Orders with given date do not exist");
+        if(!orderDao.orderDate().contains(date) || orderDao.getOrders(date)==null){
+            throw new OrderValidationException("ERROR: Orders with given date do not exist");
         }
     }
 
@@ -142,7 +142,7 @@ public class OrderServiceImpl implements OrderService {
         if(order.getDate() == null || order.getCustomerName() == null ||
            order.getArea() == null || order.getProduct().getProductType() == null ||
            order.getState().getStateAbbrivation() == null){
-           throw new OrderDataValidationException("ERROR: Al fields[Customer Name, Date, State, ProductType, Area] required");
+           throw new OrderDataValidationException("ERROR: All fields[Customer Name, Date, State, ProductType, Area] required");
            
     }
         
