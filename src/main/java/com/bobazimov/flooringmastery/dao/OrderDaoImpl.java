@@ -176,11 +176,15 @@ public class OrderDaoImpl implements OrderDao {
             }catch(FileNotFoundException ex){
                 throw new OrderPersistenceException("Could not find the file from data records");
             }
+            
             String date = file.getName().substring(7, 15);
             //DateTimeFormatter df = DateTimeFormatter.ofPattern("ddMMyyyy");
             LocalDate ld = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMddyyyy"));
             //System.out.println(ld);
             scan.nextLine();
+            if(!scan.hasNextLine()){
+                    file.delete();
+                }
             String currentLine;
             Order currentOrder;
             Map<Integer, Order> inner = new HashMap<>();

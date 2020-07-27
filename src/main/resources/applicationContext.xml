@@ -54,6 +54,24 @@
 
 <aop:config>
     <aop:aspect ref = "advice">
+        <aop:after-returning 
+            method="createAuditEntry"
+            pointcut="execution (* com.bobazimov.flooringmastery.service.OrderServiceImpl.removeOrder(..))"
+        />
+    </aop:aspect>    
+</aop:config>
+
+<aop:config>
+    <aop:aspect ref = "advice">
+        <aop:after-returning 
+            method="createAuditEntry"
+            pointcut="execution (* com.bobazimov.flooringmastery.service.OrderServiceImpl.updateOrder(..))"
+        />
+    </aop:aspect>    
+</aop:config>
+
+<aop:config>
+    <aop:aspect ref = "advice">
         <aop:after-throwing 
             method="createExceptionEntry"
             pointcut="execution(* *(..))"

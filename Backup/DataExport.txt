@@ -1,5 +1,5 @@
-OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
+OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total,Order Date
+4,Joshua,TX,4.45,Tile,400,3.50,3.50,1400.00,1660.00,3196.17,08-10-2021
 1,Ada Lovelace,CA,25.00,Tile,249.00,3.50,3.50,871.50,1033.35,2381.06,06-02-2013
-4,Bob Express, Inc.,TX,4.45,Wood,120.23,5.15,5.15,619.18,571.09,1243.24,08-01-2020
 2,Doctor Who,WA,9.25,Wood,243.00,5.15,5.15,1251.45,1154.25,2622.21,06-01-2013
 3,Albert Einstein,KY,6.00,Carpet,217.00,2.25,2.25,488.25,455.70,1000.59,06-01-2013

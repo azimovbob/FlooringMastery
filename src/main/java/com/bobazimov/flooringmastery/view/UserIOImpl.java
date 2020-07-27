@@ -151,7 +151,7 @@ public class UserIOImpl implements UserIO {
             try{
                 return LocalDate.parse(this.readString(prompt), DateTimeFormatter.ofPattern("MMddyyyy"));
             }catch(DateTimeException ex){
-                this.print("Input Error, Please try again" + "Throwing error " + ex.getMessage());
+                this.print("Input Error, Please try again");
             }
         }
     }
