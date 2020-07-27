@@ -73,7 +73,7 @@ public class ExportDataDaoImpl implements ExportDataDao {
         }catch(IOException ex){
             throw new OrderPersistenceException("Could not save data to the file");
         }
-        out.println("OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total");
+        out.println("OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total,Order Date");
 
         for(Map.Entry<LocalDate, Map<Integer, Order>> currentMap: outerMap.entrySet()){
             for(Map.Entry<Integer, Order> currentOrder: currentMap.getValue().entrySet()){

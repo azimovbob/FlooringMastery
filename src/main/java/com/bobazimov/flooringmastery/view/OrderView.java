@@ -55,11 +55,11 @@ public class OrderView {
     }
     
     public LocalDate getOrderDate(){
-        return io.readLocalDate("Enter date");
+        return io.readLocalDate("Enter date <MMddyyyy>");
     }
     
     public LocalDate getNewOrderDate(){
-        return io.readLocalDate("Enter date for new Order", LocalDate.now());
+        return io.readLocalDate("Enter date for new Order <MMddyyyy>", LocalDate.now());
     }
     
     public String getCustomerName(){
@@ -103,7 +103,7 @@ public class OrderView {
     
     public void orderRemoveBanner(){
         io.print("************************");
-        io.print("* DISPLAY ORDER");
+        io.print("* REMOVE ORDER");
         io.print("************************");
     }
     

@@ -52,7 +52,9 @@ public class OrderController {
                     break;
                     case 6: System.exit(0);
                     break;
-                    default: break;
+                    default: 
+                        view.displayErrorMessage("Wrong choice. Please try again");
+                        break;
                 }
                         
                }
@@ -62,8 +64,7 @@ public class OrderController {
     private void addOrder(){
         
         view.displayAddOrderBanner();
-        boolean hasError = false;
-        do{
+        
             try{
                 LocalDate date = view.getNewOrderDate();
                 String customerName = view.getCustomerName();
@@ -85,10 +86,9 @@ public class OrderController {
                 }
                 
             }catch(OrderPersistenceException | OrderDataValidationException | ValidateStateAndProductException ex){
-                hasError = true;
-                view.displayErrorMessage(ex.getMessage());
+                 view.displayErrorMessage(ex.getMessage());
             }
-        }while(hasError);
+        
     }
     
     private void displayOrders(){

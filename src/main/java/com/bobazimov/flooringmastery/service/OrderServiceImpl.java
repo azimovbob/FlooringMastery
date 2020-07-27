@@ -35,15 +35,6 @@ public class OrderServiceImpl implements OrderService {
         this.exportDao = exportDao;
     }
     
-//    private void validatedOrder(Order order) throws OrderPersistenceException, ValidateStateAndProductException{
-//        if(stateDao.getState(order.getState().getStateAbbrivation()) == null){
-//            throw new ValidateStateAndProductException("ERROR: Wrong state");
-//        }
-//        if(productDao.getProduct(order.getProduct().getProductType()) == null){
-//            throw new ValidateStateAndProductException("ERROR: Wrong product type");
-//        }
-//    }
-    
     private int generateOrderNumber() throws OrderPersistenceException{
         int max = 0;
         for(Map<Integer, Order> currentOrder: orderDao.getOrderNumbers()){
