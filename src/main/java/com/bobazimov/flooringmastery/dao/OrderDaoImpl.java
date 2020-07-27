@@ -145,24 +145,33 @@ public class OrderDaoImpl implements OrderDao {
     private void writeToFile() throws OrderPersistenceException{
         PrintWriter out;
         String dvdAsText;
+        LocalDate key = null;
         for(Map.Entry<LocalDate, Map<Integer, Order>> orderEntry: outer.entrySet()){
             
             LocalDate ld = orderEntry.getKey();
             String date = ld.format(DateTimeFormatter.ofPattern("MMddyyyy"));
             try{
-            out = new PrintWriter(new FileWriter(FILE_PATH + "Orders_" + date + ".txt"));
+                out = new PrintWriter(new FileWriter(FILE_PATH + "Orders_" + date + ".txt"));
             }catch(IOException ex){
-            throw new OrderPersistenceException("Cannot save the data");
+                throw new OrderPersistenceException("Cannot save the data");
             }
+            if(!orderEntry.getValue().isEmpty()){
             out.println("OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total");
             for(Map.Entry<Integer, Order> currentOrder: orderEntry.getValue().entrySet()){
                 dvdAsText = marshalling(currentOrder.getValue());
                 out.println(dvdAsText);
                 out.flush();
             }
+            }else{
+                File file = new File(FILE_PATH + "Orders_" + date + ".txt");
+                if(file.delete()){
+                   key = orderEntry.getKey();
+                }
+            }
             out.close();
         
         }
+        outer.remove(key);
     }
     
     private void readFromFile() throws OrderPersistenceException{
@@ -178,13 +187,10 @@ public class OrderDaoImpl implements OrderDao {
             }
             
             String date = file.getName().substring(7, 15);
-            //DateTimeFormatter df = DateTimeFormatter.ofPattern("ddMMyyyy");
+            
             LocalDate ld = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMddyyyy"));
-            //System.out.println(ld);
+
             scan.nextLine();
-            if(!scan.hasNextLine()){
-                    file.delete();
-                }
             String currentLine;
             Order currentOrder;
             Map<Integer, Order> inner = new HashMap<>();
@@ -197,6 +203,7 @@ public class OrderDaoImpl implements OrderDao {
             scan.close();
             
             outer.put(ld, inner);
+            //}
         }
         
     }

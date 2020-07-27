@@ -1,2 +1,2 @@
 OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
-6,Ali,KY,6.00,Carpet,101,2.25,2.10,227.25,212.10,26.36,465.71
+8,Bob,KY,6.00,Wood,400,5.15,4.75,2060.00,1900.00,237.60,4197.60

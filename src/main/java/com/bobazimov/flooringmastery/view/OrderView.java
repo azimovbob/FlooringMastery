@@ -30,7 +30,7 @@ public class OrderView {
         
         io.print("*******************************");
         io.print("* <<Flooring Program");
-        io.print("*1. Display Ordrers");
+        io.print("*1. Display Orders");
         io.print("*2. Add an Order");
         io.print("*3. Edit an Order");
         io.print("*4. Remove an Order");
@@ -63,11 +63,11 @@ public class OrderView {
     }
     
     public String getCustomerName(){
-        return io.readCustomerName("Enter customerName");
+        return io.readCustomerName("Enter customer name");
     }
     
     public int getOrderNumber(){
-        return io.readInt("Enter ordernumber");
+        return io.readInt("Enter order number");
     }
     
     public BigDecimal getArea(){
@@ -122,7 +122,7 @@ public class OrderView {
     }
     
     public String  getConfirmation(){
-         return io.readString("Are you comfirming the Order (Y/N)");
+         return io.readString("Are you confirming the Order (Y/N)");
     }
     
     public void displayAddOrderBanner(){

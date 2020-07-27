@@ -374,6 +374,3 @@ public class OrderServiceImplTest {
         assertNotNull(service.getAllOrders());
     }
 }
-
-//<Order{orderNumber=2, customerName=Doctor Who, state=State{state=null, stateAbbrivation=WA, taxRate=9.25}, product=Product{productType=Wood, costPerSqFt=5.15, laborCostPerSqft=4.75}, area=243.00, totalLaborCost=1154.2500, totalProductCost=1251.4500, totalTax=222.52725000, total=2628.22725000, date=2013-06-01}> 
-//<Order{orderNumber=2, customerName=Doctor Who, state=State{state=null, stateAbbrivation=WA, taxRate=9.25}, product=Product{productType=Wood, costPerSqFt=5.15, laborCostPerSqft=4.75}, area=243.00, totalLaborCost=1154.25, totalProductCost=1251.45, totalTax=216.51, total=2622.21, date=2013-06-01}

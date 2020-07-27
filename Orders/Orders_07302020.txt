@@ -1,0 +1,4 @@
+OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
+4,Bob; Inc.,WA,9.25,Wood,200,5.15,4.75,1030.00,950.00,183.15,2163.15
+5,afadsf,KY,6.00,Carpet,300,2.25,2.10,675.00,630.00,78.30,1383.30
+6,Bob; Inc.,TX,4.45,Carpet,400,2.25,2.10,900.00,840.00,77.43,1817.43
